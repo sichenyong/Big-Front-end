@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录注册</title>
+</head>
+<body>
+
+<h1>注册</h1>
+
+<!--表单form
+method: 表单提交方式 get post
+get 方式 我们可以在url中看到提交的信息
+    特点 不安全 高效
+post 方式 url中看不到提交信息
+     特点 不高效，传输大文件
+     如何查看post提交的信息：
+action: 表单提交位置，可以是页面，也可以是一个请求处理地址
+-->
+<form method="post" action="first-html.html" >
+  <!-- 文本输入框 input标签
+  maxlength：最长输入长度
+  size： 文本框的最大长度
+  value： 默认值
+  radio：单选框
+  -->
+  <p>用户名：<input type="text" name="username" placeholder="请输入用户名" required></p>
+  <p>密码：<input type="password" name="pwd" required></p>
+  <!--单选框 radio必备三个属性 type value name
+  value： 单选框的值
+  name： 同一组 不能同时勾选
+  checked 默认选中
+  -->
+  <p>
+    性别：
+    <input type="radio" value="boy" name="sex" checked/>男
+    <input type="radio" value="girl" name="sex"/>女
+  </p>
+
+  <!--多选框
+  最后提交到后台是数组
+  默认 checked
+  -->
+  <p>
+    爱好：
+    <input type="checkbox" value="sleep" name="hobby">睡觉
+    <input type="checkbox" value="coding" name="hobby">写代码
+    <input type="checkbox" value="chat" name="hobby">聊天
+    <input type="checkbox" value="gaming" name="hobby" checked>游戏
+  </p>
+
+  <!--按钮
+  button 普通按钮
+  image 图像按钮
+  submit  提交表单按钮
+  reset 重置按钮
+  -->
+  <p>
+    按钮：
+    <input type="button" name="btn1" value="点击变长">
+  </p>
+  <!--<p>
+      图像按钮
+      <input type="image" src="../resource/image/1.png" height="470" width="270">
+  </p>-->
+
+  <!--下拉框 列表框
+  name 传到后台的参数名称
+  option 选项
+  selected 默认选项
+  value 具体的值
+  -->
+  <p>
+    nation
+    <select name="列表名称">
+      <option value="选项的值">中国</option>
+      <option value="选项的值" selected>瑞士</option>
+      <option value="选项的值">美国</option>
+      <option value="选项的值">韩国</option>
+    </select>
+  </p>
+
+  <!--文本域
+  name同上
+  cols 列
+  rows 行
+  -->
+  <p>
+    反馈：
+    <textarea name="area"  cols="30" rows="10">文本内容</textarea>
+  </p>
+
+  <!--文件域
+  type = file
+  name 用于提交到后台
+  -->
+  <p>
+    文件
+    <input name="files" type="file">
+    <input name="upload" value="上传" type="button">
+  </p>
+
+
+  <!--邮件验证-->
+  <p>邮箱：
+    <input type="email" name="email">
+  </p>
+
+  <!--url验证-->
+  <p>url：
+    <input type="url" name="url">
+  </p>
+
+  <!--数字
+  max 最大值
+  min 最小值
+  step 点击加号 每一次加多少
+  -->
+  <p>
+    number:
+    <input type="number" name="number" max="100" min="0" step="1">
+  </p>
+
+
+  <!--滑块
+  range
+  -->
+  <p>
+    音量
+    <input type="range" name="voice" min="0" max="100" step="2">
+  </p>
+
+  <!--搜索框-->
+  <p>
+    搜索
+    <input type="search" name="search">
+  </p>
+
+  <!--增强鼠标可用性-->
+  <p>
+    <label for="mark">点我锁定文本框</label>
+    <input type="text" id="mark">
+  </p>
+
+  <!--常用正则表达式
+  https://www.jb51.net/tools/regex.htm
+  -->
+  <p>
+    自定义邮箱
+    <input type="text" name="diyemail" pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+  </p>
+
+
+
+
+  <p>
+    <input type="submit">
+    <input type="reset">
+  </p>
+</form>
+</body>
+</html>
