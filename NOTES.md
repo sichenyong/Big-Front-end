@@ -97,7 +97,7 @@ h1{
 
 **层次图**
 
-![image-20220101145309412](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220101145309412.png)
+![1.png](notes-images/1.png)
 
 - 后代选择器
 - 子类选择器
