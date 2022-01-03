@@ -1,0 +1,39 @@
+#nav{
+    width: 192px;
+    background: grey;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 50px;
+    text-indent: 1em;
+    background: red;
+}
+/*list-style:
+    none 去除前面的黑圆圈，有序列表的数字
+    circle 空心圆
+    decimal 数字
+    square 正方形
+
+*/
+
+/*ul{
+    background: grey;
+}*/
+
+ul li{
+    height: 30px;
+    list-style: none;
+    text-indent: 1em;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+a:hover{
+    color: orange;
+    text-decoration: underline;
+}
