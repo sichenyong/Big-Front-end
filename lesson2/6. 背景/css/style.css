@@ -1,0 +1,23 @@
+div {
+    width: 409px;
+    height: 203px;
+    /*依次是 边框的粗细 边框的样式 边框的颜色*/
+    border: 1px solid red;
+    /*导入背景图片
+      - 默认是全部平铺的 repeat
+    */
+    background-image: url("../images/1.png");
+}
+
+.div1{
+    /*水平平铺*/
+    background-repeat: repeat-x;
+}
+.div2{
+    /*垂直平铺*/
+    background-repeat: repeat-y;
+}
+.div3{
+    /*不平铺*/
+    background-repeat: no-repeat;
+}

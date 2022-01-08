@@ -1,5 +1,5 @@
 #nav{
-    width: 192px;
+    width: 300px;
     background: grey;
 }
 
@@ -8,7 +8,11 @@
     font-weight: bold;
     line-height: 50px;
     text-indent: 1em;
-    background: red;
+
+    /*
+   颜色 图片 图片位置 平铺方式
+    */
+    background: red url("../images/d.png") 270px 10px no-repeat;
 }
 /*list-style:
     none 去除前面的黑圆圈，有序列表的数字
@@ -26,6 +30,9 @@ ul li{
     height: 30px;
     list-style: none;
     text-indent: 1em;
+    background-image: url("../images/r.png");
+    background-repeat: no-repeat;
+    background-position: 236px 2px;
 }
 
 a{

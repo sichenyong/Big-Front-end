@@ -10,18 +10,18 @@
 
 ```html
     <!--内部样式-->
-    <style>
-        h1{
-            color: green;
-        }
-    </style>
+<style>
+    h1{
+        color: green;
+    }
+</style>
 ```
 
 ## 外部样式
 
 ```html
 <!--外部样式-->
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 ```
 
 ```css
@@ -37,13 +37,13 @@ h1{
 
 ```html
 <style>
-      h1{
-          color: green;
-      }
-      p{
-          font-size: 90px;
-      }
-  </style>
+    h1{
+        color: green;
+    }
+    p{
+        font-size: 90px;
+    }
+</style>
 
 <h1>学习</h1>
 <p>Java</p>
@@ -55,17 +55,17 @@ h1{
 
 ```html
 	<style>
-        /**/
-        .nihao{
-            color: #7aff5b;
-        }
-        .hao{
-            color: #ffc6ce;
-        }
-        .nv{
-            color: #ff71a1;
-        }
-    </style>
+    /**/
+    .nihao{
+        color: #7aff5b;
+    }
+    .hao{
+        color: #ffc6ce;
+    }
+    .nv{
+        color: #ff71a1;
+    }
+</style>
 
 <h1 class="nihao">你好</h1>
 <h1 class="hao">好</h1>
@@ -78,10 +78,10 @@ h1{
 
 ```html
 	<style>
-        #nihao{
-            color: #ff71a1;
-        }
-    </style>
+    #nihao{
+        color: #ff71a1;
+    }
+</style>
 <h1 id="nihao">你好</h1>
 ```
 
@@ -97,7 +97,7 @@ h1{
 
 **层次图**
 
-![1.png](notes-images/1.png)
+![image-20220101145309412](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220101145309412.png)
 
 - 后代选择器
 - 子类选择器
@@ -337,6 +337,7 @@ id +class 结合 = 属性选择器
 
 - 重点要突出的字用**span**标签套起来
 
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -510,7 +511,8 @@ id +class 结合 = 属性选择器
 </body>
 </html>
 ```
-## 6.4超链接伪类及文字阴影
+
+## 6.4 超链接伪类及文字阴影
 
 ### 超链接伪类
 
@@ -525,7 +527,256 @@ id +class 结合 = 属性选择器
 
 - text-shadow：水平阴影位置px +垂直阴影位置px +模糊的距离(可选)+ 阴影颜色(可选)
 
-![2.png](notes-images/2.png)
+![image-20220103111849278](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220103111849278.png)
 
 
+
+## 6.5 列表
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表学习</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!--div 空标签-->
+<div id="nav">
+    <h2 class="title">全部商品分类</h2>
+
+    <ul>
+        <li>
+            <a href="#">图书</a>
+            <a href="#">音像</a>
+            <a href="#">数字商品</a>
+        </li>
+        <li>
+            <a href="#">家用电器</a>
+            <a href="#">手机</a>
+            <a href="#">数码</a>
+        </li>
+        <li>
+            <a href="#">电脑</a>
+            <a href="#">办公</a>
+        </li>
+        <li>
+            <a href="#">家居</a>
+            <a href="#">家装</a>
+            <a href="#">厨具</a>
+        </li>
+        <li>
+            <a href="#">服饰鞋帽</a>
+            <a href="#">个性化妆</a>
+        </li>
+        <li>
+            <a href="#">礼品箱包</a>
+            <a href="#">钟表</a>
+            <a href="#">珠宝</a>
+        </li>
+        <li>
+            <a href="#">食品饮料</a>
+            <a href="#">保健食品</a>
+        </li>
+        <li>
+            <a href="#">彩票</a>
+            <a href="#">旅行</a>
+            <a href="#">充值</a>
+            <a href="#">票务</a>
+        </li>
+    </ul>
+</div>
+
+
+
+</body>
+</html>
+```
+
+
+
+style.css
+
+```css
+#nav{
+    width: 300px;
+    background: grey;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 50px;
+    text-indent: 1em;
+
+    /*
+   颜色 图片 图片位置 平铺方式
+    */
+    background: red url("../images/d.png") 270px 10px no-repeat;
+}
+/*list-style:
+    none 去除前面的黑圆圈，有序列表的数字
+    circle 空心圆
+    decimal 数字
+    square 正方形
+
+*/
+
+/*ul{
+    background: grey;
+}*/
+
+ul li{
+    height: 30px;
+    list-style: none;
+    text-indent: 1em;
+    background-image: url("../images/r.png");
+    background-repeat: no-repeat;
+    background-position: 236px 2px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+a:hover{
+    color: orange;
+    text-decoration: underline;
+}
+```
+
+
+
+## 6.6 背景
+
+- 背景颜色 background-color
+
+- 背景图片 background-image
+
+  ```css
+  div {
+      width: 409px;
+      height: 203px;
+      /*依次是 边框的粗细 边框的样式 边框的颜色*/
+      border: 1px solid red;
+      /*导入背景图片
+        - 默认是全部平铺的 repeat
+      */
+      background-image: url("../images/1.png");
+  }
+  ```
+
+    - 一些图片平铺
+
+      ```css
+      .div1{
+          /*水平平铺*/
+          background-repeat: repeat-x;
+      }
+      .div2{
+          /*垂直平铺*/
+          background-repeat: repeat-y;
+      }
+      .div3{
+          /*不平铺*/
+          background-repeat: no-repeat;
+      }
+      ```
+
+
+
+## 6.7 渐变
+
+- 网站：https://www.grabient.com/
+
+
+
+# 7. 盒子模型
+
+## 7.1 什么是盒子模型
+
+![image-20220108104011429](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220108104011429.png)
+
+- margin： 外边距 元素到嘴外边的距离
+- border：边框
+- padding： 内边距
+
+
+
+## 7.2 边框
+
+1. 边框的粗细
+2. 边框的样式
+3. 边框的颜色
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /*body 的margin默认是8 影响美观
+            - 写的时候 可以将h ul li a body等标签的 padding margin设置为0
+            */
+        body{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        /*border 粗细 样式 颜色*/
+        #box{
+            width: 300px;
+            border: 1px solid red;
+        }
+
+        form{
+            background: #3cbda6;
+        }
+
+        h2{
+            font-size: 30px;
+            background-color: #ff71a1;
+            margin: 0;
+            text-align: center;
+        }
+
+        div:nth-of-type(1) input{
+            border: 3px solid black;
+        }
+
+        div:nth-of-type(2) input{
+            border: 3px dashed blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <form action="#">
+        <h2>会员登录</h2>
+        <div>
+            <span>姓名：</span>
+            <input type="text">
+        </div>
+
+        <div>
+            <span>密码：</span>
+            <input type="text">
+        </div>
+
+        <div>
+            <span>邮箱：</span>
+            <input type="text">
+        </div>
+    </form>
+</div>
+</body>
+</html>
+```
 
