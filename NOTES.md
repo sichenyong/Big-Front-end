@@ -21,7 +21,7 @@
 
 ```html
 <!--外部样式-->
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 ```
 
 ```css
@@ -37,13 +37,13 @@ h1{
 
 ```html
 <style>
-    h1{
-        color: green;
-    }
-    p{
-        font-size: 90px;
-    }
-</style>
+      h1{
+          color: green;
+      }
+      p{
+          font-size: 90px;
+      }
+  </style>
 
 <h1>学习</h1>
 <p>Java</p>
@@ -55,17 +55,17 @@ h1{
 
 ```html
 	<style>
-    /**/
-    .nihao{
-        color: #7aff5b;
-    }
-    .hao{
-        color: #ffc6ce;
-    }
-    .nv{
-        color: #ff71a1;
-    }
-</style>
+        /**/
+        .nihao{
+            color: #7aff5b;
+        }
+        .hao{
+            color: #ffc6ce;
+        }
+        .nv{
+            color: #ff71a1;
+        }
+    </style>
 
 <h1 class="nihao">你好</h1>
 <h1 class="hao">好</h1>
@@ -78,10 +78,10 @@ h1{
 
 ```html
 	<style>
-    #nihao{
-        color: #ff71a1;
-    }
-</style>
+        #nihao{
+            color: #ff71a1;
+        }
+    </style>
 <h1 id="nihao">你好</h1>
 ```
 
@@ -776,6 +776,235 @@ a:hover{
         </div>
     </form>
 </div>
+</body>
+</html>
+```
+
+## 7.3 外边距
+
+- 外边距妙用 -- 居中
+- margin : 上 右 下 左(1px 1px 1px 1px) 或 上下 左右(1px 1px)  所有的统一(1px)三种种
+- margin-top 外边距的上部
+- margin-bottom 外边距的下部
+- margin-right 外边距的右部
+- margin-left 外边距的左部
+
+
+
+## 7.4 内边距
+
+- padding
+- padding:  上 右 下 左(1px 1px 1px 1px) 或 上下 左右(1px 1px)  所有的统一(1px)三种种
+
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /*body 的margin默认是8 影响美观
+            - 写的时候 可以将h ul li a body等标签的 padding margin设置为0
+            */
+        body{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        /*border 粗细 样式 颜色*/
+        #box{
+            width: 300px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+
+        form{
+            background: #3cbda6;
+        }
+
+        h2{
+            font-size: 30px;
+            background-color: #ff71a1;
+            margin: 0;
+            text-align: center;
+        }
+
+        input{
+            border: 1px solid black;
+        }
+        
+        div: nth-of-type(1) {
+            padding: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <form action="#">
+        <h2>会员登录</h2>
+        <div>
+            <span>姓名：</span>
+            <input type="text">
+        </div>
+
+        <div>
+            <span>密码：</span>
+            <input type="text">
+        </div>
+
+        <div>
+            <span>邮箱：</span>
+            <input type="text">
+        </div>
+    </form>
+</div>
+</body>
+</html>
+```
+
+
+
+## 7.5 盒子的计算方式
+
+- size = margin + border + padding + 内容宽度
+- 例如 给你 50*50px 是size = 50 而不是内容宽度
+
+
+
+## 7.6 圆角边框
+
+- border-radius: apx 四个角都是apx
+- border-radius: apx bpx 左上右下是apx 左下右上是bpx
+- border-radius: apx bpx cpx dpx 左上 右上 右下 左下
+- 圆形 圆角 = 半径
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--
+    - border-radius: apx 四个角都是apx
+    - border-radius: apx bpx 左上右下是apx 左下右上是bpx
+    - border-radius: apx bpx cpx dpx 左上 右上 右下 左下
+    - 圆形 圆角 = 半径
+    -->
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 10px solid #ff71a1;
+            border-radius: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
+```
+
+
+
+## 7.7 阴影
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--
+    - box-shadow: xpx ypx apx color x轴y轴 模糊半径a 模糊颜色color
+    - 居中 要求要存在块元素中 且块元素要有固定宽度
+    -->
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 10px solid #71a7ff;
+            box-shadow: 10px 10px 1px red;
+        }
+    </style>
+</head>
+<body>
+<div>
+
+</div>
+</body>
+</html>
+```
+
+
+
+# 8. 浮动
+
+## 8.1 标准文档流
+
+- 块级元素
+    - h1
+    - h2
+    - ...h6
+    - p
+    - div
+    - 列表
+- 行内元素
+    - span
+    - a
+    - img
+    - strong
+    - ...
+
+## 8.2 display
+
+- display:
+  - block 变成块元素
+  - inline-block 既是块元素又是行内元素
+  - inline 变成行内元素
+  - none 不显示
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    /*
+    display:
+    - block 变成块元素
+    - inline-block 既是块元素又是行内元素
+    - inline 变成行内元素
+    - none 不显示
+    */
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 10px solid red;
+        }
+
+        span{
+            width: 100px;
+            height: 100px;
+            border: 10px solid blue;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div>块元素</div>
+
+<span>span行内元素</span>
+
 </body>
 </html>
 ```
