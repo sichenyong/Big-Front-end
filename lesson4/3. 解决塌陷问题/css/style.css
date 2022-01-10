@@ -1,0 +1,49 @@
+div{
+    margin: 10px;
+    padding: 5px;
+}
+
+#father{
+    border: 1px solid #000;
+    height: 500px;
+}
+
+.layer01{
+    border: 1px dashed red;
+    display: inline-block;
+    float: right;
+}
+
+.layer02{
+    border: 1px dashed blue;
+    display: inline-block;
+    float: right;
+    clear: both;
+}
+
+.layer03{
+    border: 1px dashed skyblue;
+    display: inline-block;
+    float: right;
+}
+/*
+ - clear 清除浮动 若要浮动 另起一行
+  - right 右侧不允许浮动
+  - left 左侧不允许浮动
+  - both 两侧都不允许浮动
+  -
+*/
+.layer04{
+    border: 1px dashed rgb(6,6,6);
+    font-size: 12px;
+    line-height: 23px;
+    float: right;
+    clear: right;
+}
+
+.clear{
+
+    clear: both;
+    margin: 0;
+    padding: 0;
+}

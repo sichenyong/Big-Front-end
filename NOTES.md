@@ -11,9 +11,9 @@
 ```html
     <!--内部样式-->
 <style>
-    h1{
-        color: green;
-    }
+  h1{
+    color: green;
+  }
 </style>
 ```
 
@@ -97,7 +97,7 @@ h1{
 
 **层次图**
 
-![image-20220101145309412](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220101145309412.png)
+![image-20220101145309412](notes-images/1.png)
 
 - 后代选择器
 - 子类选择器
@@ -206,11 +206,11 @@ body>p{
 
 - 选中body中的第一个元素
 
-    - 第一种
+  - 第一种
 
-        - nth 选中当前类型的父层
+    - nth 选中当前类型的父层
 
-        - p:nth-child(x) 选中p类型的父层，父层的第x个的孩子是p标签才生效
+    - p:nth-child(x) 选中p类型的父层，父层的第x个的孩子是p标签才生效
 
   ```css
    p:nth-child(1){
@@ -218,15 +218,15 @@ body>p{
           }
   ```
 
-    - 第二种
+  - 第二种
 
-        - p: nth-of-type(x) 选中p类型的父层，父层的第x的p标签生效
+    - p: nth-of-type(x) 选中p类型的父层，父层的第x的p标签生效
 
-      ```css
-      p:nth-of-type(2){
-                  background: #ffc6ce;
-              }
-      ```
+    ```css
+    p:nth-of-type(2){
+                background: #ffc6ce;
+            }
+    ```
 
 
 
@@ -235,10 +235,10 @@ body>p{
 id +class 结合 = 属性选择器
 
 - 几种等于符号
-    - **=** --> 绝对等于
-    - *= --> 通配符
-    - ^= -->  通配符 前缀等于xx
-    - $= --> 通配符 后缀等于xx
+  - **=** --> 绝对等于
+  - *= --> 通配符
+  - ^= -->  通配符 前缀等于xx
+  - $= --> 通配符 后缀等于xx
 
 ```html
 <!DOCTYPE html>
@@ -331,7 +331,7 @@ id +class 结合 = 属性选择器
 
 ## 6.1 为什么要美化网页
 
-![image-20220102092839571](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220102092839571.png)
+![image-20220102092839571](notes-images/why.png)
 
 
 
@@ -527,7 +527,7 @@ id +class 结合 = 属性选择器
 
 - text-shadow：水平阴影位置px +垂直阴影位置px +模糊的距离(可选)+ 阴影颜色(可选)
 
-![image-20220103111849278](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220103111849278.png)
+![image-20220103111849278](notes-images/2.png)
 
 
 
@@ -670,22 +670,22 @@ a:hover{
   }
   ```
 
-    - 一些图片平铺
+  - 一些图片平铺
 
-      ```css
-      .div1{
-          /*水平平铺*/
-          background-repeat: repeat-x;
-      }
-      .div2{
-          /*垂直平铺*/
-          background-repeat: repeat-y;
-      }
-      .div3{
-          /*不平铺*/
-          background-repeat: no-repeat;
-      }
-      ```
+    ```css
+    .div1{
+        /*水平平铺*/
+        background-repeat: repeat-x;
+    }
+    .div2{
+        /*垂直平铺*/
+        background-repeat: repeat-y;
+    }
+    .div3{
+        /*不平铺*/
+        background-repeat: no-repeat;
+    }
+    ```
 
 
 
@@ -699,7 +699,7 @@ a:hover{
 
 ## 7.1 什么是盒子模型
 
-![image-20220108104011429](C:\Users\48272\AppData\Roaming\Typora\typora-user-images\image-20220108104011429.png)
+![image-20220108104011429](notes-images/3.png)
 
 - margin： 外边距 元素到嘴外边的距离
 - border：边框
@@ -948,25 +948,27 @@ a:hover{
 
 ## 8.1 标准文档流
 
+![image-20220103111849278](notes-images/4.png)
+
 - 块级元素
-    - h1
-    - h2
-    - ...h6
-    - p
-    - div
-    - 列表
+  - h1
+  - h2
+  - ...h6
+  - p
+  - div
+  - 列表
 - 行内元素
-    - span
-    - a
-    - img
-    - strong
-    - ...
+  - span
+  - a
+  - img
+  - strong
+  - ...
 
 ## 8.2 display
 
 - display:
   - block 变成块元素
-  - inline-block 既是块元素又是行内元素
+  - inline-block 既是块元素又是行内元素 ✔
   - inline 变成行内元素
   - none 不显示
 
@@ -974,36 +976,248 @@ a:hover{
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 
-    /*
-    display:
-    - block 变成块元素
-    - inline-block 既是块元素又是行内元素
-    - inline 变成行内元素
-    - none 不显示
-    */
-    <style>
-        div{
-            width: 100px;
-            height: 100px;
-            border: 10px solid red;
-        }
+  /*
+  display:
+  - block 变成块元素
+  - inline-block 既是块元素又是行内元素
+  - inline 变成行内元素
+  - none 不显示
+  */
+  <style>
+    div{
+      width: 100px;
+      height: 100px;
+      border: 10px solid red;
+    }
 
-        span{
-            width: 100px;
-            height: 100px;
-            border: 10px solid blue;
-            display: block;
-        }
-    </style>
+    span{
+      width: 100px;
+      height: 100px;
+      border: 10px solid blue;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
 <div>块元素</div>
 
 <span>span行内元素</span>
+
+</body>
+</html>
+```
+
+
+
+## 8.3 浮动 float
+
+- float:
+  - right --向右浮动
+  - left -- 向左浮动
+  - bottom --向下浮动
+  - top --向上浮动
+  - none --不浮动
+- clear 清楚浮动
+  - both 清除选中的所有浮动
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>浮动</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+<div id="father">
+  <div class="layer01"><img src="images/1.jpg" alt=""></div>
+  <div class="layer02"><img src="images/2.jfif" alt=""></div>
+  <div class="layer03"><img src="images/3.jpeg" alt=""></div>
+  <div class="layer04">
+    浮动的盒子可以向左滑动，也可以向右滑动，直到他的外边缘碰到包含框或另一个浮动的盒子为止
+  </div>
+</div>
+</body>
+</html>
+```
+
+```css
+div{
+  margin: 10px;
+  padding: 5px;
+}
+
+#father{
+  border: 1px solid #000;
+}
+
+.layer01{
+  border: 1px dashed red;
+  display: inline-block;
+  float: right;
+}
+
+.layer02{
+  border: 1px dashed blue;
+  display: inline-block;
+  float: right;
+  clear: both;
+}
+
+.layer03{
+  border: 1px dashed skyblue;
+  display: inline-block;
+}
+
+.layer04{
+  border: 1px dashed rgb(6,6,6);
+  font-size: 12px;
+  line-height: 23px;
+}
+```
+
+## 8.4 父级边框塌陷的问题
+
+- clear 清除浮动 若要浮动 另起一行
+  - right 右侧不允许浮动
+  - left 左侧不允许浮动
+  - both 两侧都不允许浮动
+
+
+
+解决
+
+1. 增大父级元素高度
+
+   ```css
+   #father{
+       border: 1px solid #000;
+       height: 500px;
+   }
+   ```
+
+
+
+2. 增加一个空div
+
+   ```html
+   <div class="clear"></div>
+   ```
+
+   ```css
+   .clear{
+   
+       clear: both;
+       margin: 0;
+       padding: 0;
+   }
+   ```
+
+3. 在父级元素中 增加一个overflow:hidden
+
+  - hidden 超出的部分隐藏
+
+  - scroll 滚动条
+
+  - auto 当超出了，可以用浏览器的滚动条
+
+4. 在父类添加一个伪类 after
+
+   ```css
+   #father:after{
+       content: '';
+       display: block;
+       clear: both;
+   }
+   ```
+
+### 小结
+
+1. 增加父级元素的高度
+2. 设置一个空div
+3. overflow
+4. 父类中加一个伪类 after(推荐)
+
+
+
+## 对比
+
+- display
+
+  方向不能自己定，但是不用考虑父级边框塌陷的问题
+
+- float
+
+  可以自己定方向，但是需要考虑父级边框塌陷问题
+
+
+
+# 9. 定位
+
+## 9.1 相对定位
+
+- position:relative
+
+  相对原来的位置进行指定的偏移（仍然在标准文档中，原来的位置会被保留）
+
+  - top
+  - bottom
+  - left
+  - right
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>相对定位</title>
+
+    <!--相对自己原来的位置进行偏移-->
+    <style>
+        div{
+            margin: 10px;
+            padding: 5px;
+            font-size: 12px;
+            line-height: 25px;
+        }
+
+        #father{
+            border: 1px solid black;
+        }
+
+        /*
+        - position 相对原来的自己
+        - relative 相对定位
+        - top apx 距离原来的自己向下移动apx
+        */
+        #first{
+            border: 1px dashed red;
+            position: relative;
+            top: -20px;
+            left: 20px
+        }
+
+        #second{
+            border: 1px dashed pink;
+        }
+
+        #third{
+            border: 1px dashed purple;
+        }
+    </style>
+</head>
+<body>
+
+<div id="father">
+  <div id="first">第一个盒子</div>
+  <div id="second">第二个盒子</div>
+  <div id="third">第三个盒子</div>
+
+</div>
 
 </body>
 </html>

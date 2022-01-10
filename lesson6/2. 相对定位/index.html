@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>相对定位</title>
+
+    <!--相对自己原来的位置进行偏移-->
+    <style>
+        div{
+            margin: 10px;
+            padding: 5px;
+            font-size: 12px;
+            line-height: 25px;
+        }
+
+        #father{
+            border: 1px solid black;
+        }
+
+        /*
+        - position 相对原来的自己
+        - relative 相对定位
+        - top apx 距离原来的自己向下移动apx
+        */
+        #first{
+            border: 1px dashed red;
+            position: relative;
+            top: -20px;
+            left: 20px
+        }
+
+        #second{
+            border: 1px dashed pink;
+        }
+
+        #third{
+            border: 1px dashed purple;
+        }
+    </style>
+</head>
+<body>
+
+<div id="father">
+  <div id="first">第一个盒子</div>
+  <div id="second">第二个盒子</div>
+  <div id="third">第三个盒子</div>
+
+</div>
+
+</body>
+</html>
