@@ -1223,3 +1223,194 @@ div{
 </html>
 ```
 
+## 9.2 绝对定位 absolute
+
+基于xxx定位，上下左右
+
+1. 没有父级元素定位的前提下，相对于浏览器定位
+2. 假设父级元素存在定位，我们通常会相对于父级元素进行偏移
+3. 在父级元素范围内移动
+
+相对父级或浏览器的位置进行指定的偏移，绝对定位的话，他不在标准文档流中，原来的位置不会被保留
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绝对定位</title>
+
+    <style>
+        div{
+            margin: 10px;
+            padding: 5px;
+            font-size: 12px;
+            line-height: 25px;
+        }
+
+        #father{
+            border: 1px solid black;
+            position: relative;
+        }
+
+        #first{
+            border: 1px dashed red;
+        }
+
+        #second{
+            border: 1px dashed pink;
+            position: absolute;
+            right: 30px;
+        }
+
+        #third{
+            border: 1px dashed purple;
+        }
+    </style>
+</head>
+<body>
+
+<div id="father">
+  <div id="first">第一个盒子</div>
+  <div id="second">第二个盒子</div>
+  <div id="third">第三个盒子</div>
+
+</div>
+
+</body>
+</html>
+```
+
+
+
+
+
+## 9.3 固定定位 fixed
+
+固定定位是定死了的 滑动浏览器也不会动
+
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>固定定位</title>
+
+    <style>
+        body{
+            height: 1000px;
+        }
+
+        div:nth-of-type(1) {
+            width: 100px;
+            height: 100px;
+            background-color: #ff71a1;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+
+        div:nth-of-type(2) {
+            width: 50px;
+            height: 50px;
+            background-color: #3cbda6;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div>div1</div>
+
+<div>div2</div>
+
+</body>
+</html>
+```
+
+
+
+
+
+## 9.4 z-index
+
+![image-20220112102842522](E:\FulllStack\css-1\notes-images\5.png)
+
+- z-index 默认是0 最高无线~ 999
+- 透明度  opacity: 0.5 (0 ~ 1);
+  IE8及更早的浏览器支持 filter: alpha(opacity=50)  (opacity ~0-100);
+
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="content">
+    <ul>
+        <li><img src="images/bg.jpg" alt=""></li>
+        <li class="TipText">学习加油</li>
+        <li class="TipBg"></li>
+        <li>时间2022-1-12</li>
+        <li>地点中国</li>
+    </ul>
+</div>
+
+</body>
+</html>
+```
+
+```css
+#content{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 25px;
+    border: 1px solid black;
+    width: 640px;
+}
+
+ul, li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#content ul{
+    position: relative;
+}
+
+.TipText, .TipBg{
+    position: absolute;
+    width: 640px;
+    top: 373px;
+    height: 25px;
+}
+
+.TipBg{
+    background: #000000;
+    width: 640px;
+    /* 透明度
+    opacity: 0.5;
+    IE8及更早的浏览器支持 filter: alpha(opacity=50);
+    */
+    filter: alpha(opacity=50);
+}
+
+.TipText{
+    /*z-index: 999;*/
+    color: white;
+}
+```
+

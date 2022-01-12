@@ -1,0 +1,41 @@
+#content{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 25px;
+    border: 1px solid black;
+    width: 640px;
+}
+
+ul, li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#content ul{
+    position: relative;
+}
+
+.TipText, .TipBg{
+    position: absolute;
+    width: 640px;
+    top: 373px;
+    height: 25px;
+}
+
+.TipBg{
+    background: #000000;
+    width: 640px;
+    /* 透明度
+    opacity: 0.5;
+    IE8及更早的浏览器支持 filter: alpha(opacity=50);
+    */
+    filter: alpha(opacity=50);
+}
+
+.TipText{
+    /*z-index: 999;*/
+    color: white;
+}
