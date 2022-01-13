@@ -12,7 +12,7 @@ JavaScript是当下最流行的脚本语言
 
 ```javascript
 <script>
-        alert('hello world!');
+    alert('hello world!');
 </script>
 ```
 
@@ -404,7 +404,7 @@ var arr = [1,2,3,4]
 
 
 
-3.3、对象
+## 3.3、对象
 
 若干键值对
 
@@ -473,4 +473,397 @@ js中的对象是由 {}表示
    out-- false
    ```
 
-   
+
+
+
+## 3.4、流程控制
+
+1、if判断
+
+```javascript
+var age = 3;
+if (age > 3) {
+     alert('haha');
+} else {
+     alert('ku');
+}
+```
+
+2、while循环
+
+```javascript
+while(age < 100) {
+            age = age + 1;
+            console.log(age);
+        }
+
+do {
+    age = age + 1;
+    console.log(age);
+}while(age < 100) 
+```
+
+3、for循环
+
+```javascript
+for (let i = 1; i <= age; i++) {
+            console.log(age);
+        }
+```
+
+4、数组循环 (forEach & for)
+
+```javascript
+/**forEach**/
+var age = [1,2,3,4,5,6,7,8,9];
+        age.forEach(function (value) {
+            console.log(value);
+        })
+
+/**for 循环**/
+/**下标**/
+for (let num in age) {
+            console.log(age[num]);
+        }
+/**具体值**/
+for (let num of age) {
+            console.log(num);
+        }
+```
+
+
+
+## 3.5、map set
+
+### 3.51、map
+
+```javascript
+var map = new Map([['Tom',99],['Jerry',100]]);
+
+var name = map.get('Tom'); // 通过key获取value
+
+map.set('admin',999); //设置键值对
+
+map.delete('admin'); //删除键值对
+
+console.log(name);
+```
+
+### 3.52、set
+
+```javascript
+var set = new Set([3,1,1,1,1]); // 可以去重
+console.log(set);
+
+set.add(2); //添加一个
+set.delete(1); //删除一个
+set.has(3); //查询是否在set中
+```
+
+
+
+## 3.6、iterator
+
+遍历数组
+
+```javascript
+var arr = [1,2,3];
+        for (let num of arr) {
+            console.log(num);
+        }
+```
+
+遍历map
+
+```javascript
+var map = new Map([['Tom',99],['Jerry',100]]);
+        for (let x of map) {
+            console.log(x);
+        }
+```
+
+遍历set
+
+```javascript
+var set = new Set([5,6,7]);
+
+        for (let x of set) {
+            console.log(x);
+        }
+```
+
+# 4、函数及面向对象
+
+## 4.1、函数定义
+
+- typeof x -- 获取x的类型
+
+> 定义方式一
+
+绝对值函数
+
+```javascript
+function function_name(xxx) {
+    
+    return xxx;
+}
+```
+
+执行到return代表函数结束，若没有执行return，函数执行完也会返回结果，undefined
+
+> 定义方式二
+
+```javascript
+var function_name = function(xxx) {
+    return xxx;
+}
+```
+
+funciton(x){....}是一个匿名函数，但是可以把结果赋值给abs，通过abs就可以调用函数！
+
+> 调用函数
+
+```javascript
+function_name(xx);
+```
+
+javascript可以传任意个参数，也可以不传递参数
+
+不存在参数的时候异常处理
+
+```javascript
+function abs(x) {
+            if (typeof x != 'number') {
+                throw 'not a number!';
+            } else if (x > 0) {
+                return x;
+            } else return -x;
+       }
+```
+
+> ```
+> arguments
+> ```
+
+arguments是js免费赠送的关键字，是传递进来的所有参数，是一个**数组**
+
+> rest
+
+ES6引入的新特性，获取除了已定义的参数之外的所有参数
+
+以前
+
+```javascript
+function aaa(a, b) {
+            console.log('a = ' + a);
+            console.log('b = ' + b);
+
+            if (arguments.length>2) {
+                for (let i = 2; i < arguments.length; i++) {
+
+                }
+            }
+        }
+```
+
+现在    --固定格式(...rest)且必须放在最后面
+
+```javascript
+function aaa(a, b,...rest) {
+            console.log('a = ' + a);
+            console.log('b = ' + b);
+            console.log('rest = ' + rest);
+        }
+```
+
+## 4.2、变量的作用域
+
+在JavaScript中，var定义的变量是有作用域的
+
+若在函数体中声明，函数体外不可用， 若非要想用，可以研究闭包
+
+```javascript
+function scy() {
+        var x = 1;
+
+        x = x + 1;
+    }
+    x = x + 2; //Uncaught ReferenceError: x is not defined
+```
+
+若在两个函数中使用了相同的变量名，只要在函数内部就不冲突
+
+
+
+内部函数可以访问外面的函数的成员，反之不行
+
+```javascript
+function scy() {
+        var x = 1;
+
+        //内部函数可以访问外面的函数的成员，反之不行
+        function  scy1() {
+            var y = x + 1;
+        }
+        var z = y + 1; //Uncaught ReferenceError: y is not defined
+    }
+```
+
+假设内部成员函数变量和外部成员变量相同时，重名！
+
+```javascript
+function scy() {
+        var x = 1;
+
+        //内部函数可以访问外面的函数的成员，反之不行
+        function  scy1() {
+            var x = 'a';
+            console.log('内部x = ' + x); //内部x = a
+        }
+        scy1();
+        console.log('外部x = ' + x); //外部x = z
+    }
+```
+
+函数查找变量从自身函数开始，假设外部存在同名函数变量，则内部函数会屏蔽外部函数的变量
+
+
+
+> 提升变量的作用域
+
+```javascript
+function scy() {
+        var x = 'x' + y;
+        console.log(x); //xundefined
+
+        var y = 'y';
+    }
+```
+
+结果：xundefined
+
+说明js自动提升了y的声明，但是不会赋值；
+
+```javascript
+function scy() {
+    	var y;
+        var x = 'x' + y;
+        console.log(x); //xundefined
+
+        y = 'y';
+    }
+```
+
+因此 在写JavaScript时，将所有变量定义都放在函数的头部，便于代码维护
+
+
+
+> 全局函数
+
+```javascript
+//全局变量
+var x = 1;
+
+        function f() {
+            console.log(x);
+        }
+        f();
+        console.log(x);
+```
+
+> 全局对象window
+
+```javascript
+var x = 'xxx';
+        alert(x);
+        alert(window.x); // 默认所有全局变量都会自动绑定在window对象下
+```
+
+alert本是也是window变量
+
+```javascript
+var x = 'xxx';
+        alert(x);
+        //window.alert(window.x); // 默认所有全局变量都会自动绑定在window对象下
+        var old_alert = window.alert;
+        //old_alert(x);
+
+        window.alert = function () {
+
+        }
+        window.alert(123); //alert失效
+
+        window.alert = old_alert;
+        window.alert(1234);
+```
+
+JavaScript实际上只有一个全局作用域，任何变量(函数也可以视为变量), 假设没有在函数作用范围内，就会向外查找，如果在全局作用域都没找到，会报错ReferenceError
+
+> 规范
+
+由于我们的所有全局变量都会绑定到我们的window上，不同的js文件，使用相同的全局变量，如何能减少冲突？
+
+```javascript
+var Sichenyong = {};
+
+        Sichenyong.name = 'sichenyong';
+        Sichenyong.add = function (a,b) {
+            return a + b;
+        }
+```
+
+
+
+将自己用到的全部代码全部放入自己定义的唯一空间名字中，降低全局命名冲突问题~
+
+
+
+> 局部作用域 let
+
+```javascript
+//var
+function aaa() {
+            for (var i = 0; i < 100; i++) {
+                console.log(i)
+            }
+            console.log(i + 1); //101, i出了作用域还能用
+        }
+
+        aaa();
+```
+
+
+
+```javascript
+//let
+function aaa() {
+            for (let i = 0; i < 100; i++) {
+                console.log(i)
+            }
+            console.log(i + 1); //i is not defined
+        }
+
+        aaa();
+```
+
+
+
+> 常量const
+
+在ES6之前怎么定义常量？ 全部用大写字母定义的变量就是常量
+
+```javascript
+var PI = '3.14';
+console.log(PI);
+PI = 'aaa';
+console.log(PI); //可以改的
+```
+
+ES6
+
+```javascript
+const PI = '3.14';
+console.log(PI);
+PI = 'aaa'; //这里会报错
+console.log(PI); //Uncaught TypeError: Assignment to constant variable.
+```
