@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //es6之后 上面等价于
+    //定义一个学生的类
+    class Student{
+        constructor(name) {
+            this.name = name;
+        }
+
+        hello() {
+            alert('hello');
+        }
+    }
+
+    class xiaoStudent extends Student {
+        constructor(name,grade) {
+            super(name);
+            this.grade = grade;
+        }
+
+        xiao() {
+            alert('我是一个小学生');
+        }
+    }
+    var xiaoming = new Student('xiaoming');
+    var xiaoxuesheng = new xiaoStudent('xiaohuang',90);
+</script>
+</body>
+</html>

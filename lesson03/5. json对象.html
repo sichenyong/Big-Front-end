@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var user = {
+        name: 'sichenyong',
+        age: 21,
+        qq: 482722982,
+        sex: '男',
+        run: function () {
+            console.log(this.name + 'run');
+        }
+    } //{name: 'sichenyong', age: 21, qq: 482722982, sex: '男'}
+
+    //对象转化为json字符串
+    var  json_user = JSON.stringify(user); //{"name":"sichenyong","age":21,"qq":482722982,"sex":"男"}
+
+    //json字符串转化为对象 参数为字符串
+    JSON.parse('{"name":"sichenyong","age":21,"qq":482722982,"sex":"男"}'); //{name: 'sichenyong', age: 21, qq: 482722982, sex: '男'}
+
+    var xiaoming = {
+        name: '小明'
+    }
+    //小明的原型是user
+    xiaoming._proto_ = user;
+
+    var bird = {
+        fly: function () {
+            console.log(this.name + 'fly');
+        }
+    }
+    //小明的原型是bird
+    xiaoming._proto_ = bird;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var date = new Date();
+    console.log(date); //Fri Jan 14 2022 10:38:48 GMT+0800 (中国标准时间)
+    date.getFullYear(); //年
+    date.getMonth();//月 老外是0~11
+    date.getDate(); //日
+    date.getDay(); //周几
+    date.getHours(); //时
+    date.getMinutes(); //分
+    date.getSeconds(); //秒
+    date.getMilliseconds(); //毫秒
+
+    date.getTime(); //时间戳 全世界统一 从1970-1-1 00:00 到现在的毫秒数
+    console.log(new Date(1642128193787)); // 时间戳转具体时间 VM302:1 Fri Jan 14 2022 10:43:13 GMT+0800 (中国标准时间)
+
+    date.toLocaleString(); // 转换成本地时间 '2022/1/14 上午10:43:13'
+
+    date.toGMTString(); // 转换为标准时间 'Fri, 14 Jan 2022 02:47:23 GMT'
+</script>
+
+</body>
+</html>

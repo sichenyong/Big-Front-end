@@ -867,3 +867,268 @@ console.log(PI);
 PI = 'aaa'; //这里会报错
 console.log(PI); //Uncaught TypeError: Assignment to constant variable.
 ```
+## 4.3、方法
+
+> 定义方法
+
+方法就是把函数放在对象里面，对象只有两个东西：属性和方法
+
+```javascript
+var person = {
+        name : '司称勇',
+        birth: 2001,
+        //方法
+        age: function () {
+            let now = new Date().getFullYear();
+            return now - this.birth;
+        }
+    }
+```
+
+拆开看
+
+```javascript
+function getAge() {
+        let now = new Date().getFullYear();
+        return now - this.birth;
+    }
+
+    var person = {
+        name : '司称勇',
+        birth: 2001,
+        //方法
+        age: getAge
+    }
+    
+    
+    /*
+    结果
+    person.age() -- 21
+    getAge() -- NaN
+    */
+```
+
+this是无法指向的，是默认指向调用他的那个对象
+
+> apply
+
+在js中可以控制this的指向
+
+```javascript
+getAge.apply(person,[]); //this 指向person这个对象，参数为空
+
+/*
+ 结果
+ 21
+*/
+```
+
+# 5、常用对象
+
+> 标准对象
+
+```javascript
+typeof 123
+'number'
+typeof 'a'
+'string'
+typeof NaN
+'number'
+typeof false
+'boolean'
+typeof []
+'object'
+typeof {}
+'object'
+typeof Math.abs
+'function'
+```
+
+## 5.1、Date
+
+**基本使用**
+
+```javascript
+var date = new Date();
+console.log(date); //Fri Jan 14 2022 10:38:48 GMT+0800 (中国标准时间)
+date.getFullYear(); //年
+date.getMonth();//月 老外是0~11
+date.getDate(); //日
+date.getDay(); //周几
+date.getHours(); //时
+date.getMinutes(); //分
+date.getSeconds(); //秒
+date.getMilliseconds(); //毫秒
+
+date.getTime(); //时间戳 全世界统一 从1970-1-1 00:00 到现在的毫秒数
+```
+
+**转换**
+
+```javascript
+date.toLocaleString(); // 转换成本地时间 '2022/1/14 上午10:43:13'
+
+date.toGMTString(); // 转换为标准时间 'Fri, 14 Jan 2022 02:47:23 GMT'
+```
+
+
+
+## 5.2、JSON(重点)
+
+> json是什么？
+
+- JSON(JavaScript Object Notation, JS 对象简谱) 是一种**轻量级的数据交换格式**。
+- 它基于 ECMAScript (欧洲计算机协会制定的js规范)的一个子集，采用完全**独立于编程语言**的文本格式来存储和表示数据。
+- 简洁和清晰的**层次结构**使得 JSON 成为理想的数据交换语言。
+- 易于人阅读和编写，同时也易于机器解析和生成，并有效地**提升网络传输效率**。
+
+在JavaScript中一切都是对象、任何js支持的类型都可以用json表示
+
+**格式**
+
+- 对象、map都用{}
+- 数组、list都用[]
+- 所有的键值对都用 key:value的格式
+
+
+
+**JSON字符串和js对象之间的转换**
+
+```javascript
+var user = {
+        name: 'sichenyong',
+        age: 21,
+        qq: 482722982,
+        sex: '男'
+    } //{name: 'sichenyong', age: 21, qq: 482722982, sex: '男'}
+
+    //对象转化为json字符串
+    var  json_user = JSON.stringify(user); //{"name":"sichenyong","age":21,"qq":482722982,"sex":"男"}
+
+    //json字符串转化为对象 参数为字符串
+    JSON.parse('{"name":"sichenyong","age":21,"qq":482722982,"sex":"男"}'); //{name: 'sichenyong', age: 21, qq: 482722982, sex: '男'}
+```
+
+
+
+**JSON 和JS的区别**
+
+```javascript
+var obj = {a : 'a', b : 'b'};
+
+var json = '{"a" : "a", "b" : "b"}';
+```
+
+
+
+## 5.3、Ajax
+
+- 原生的js写法  xhr异步请求
+- jquery封装好的方法 $.ajax()  $("#name").ajax("")
+- axios请求
+
+
+
+# 6、面向对象编程
+
+## 6.1、什么是面向对象
+
+JavaScript java c++ c# .....都是面向对象； 但是JavaScript有一些区别
+
+- 类：模板
+- 对象：具体实例
+
+在JavaScript中，需要换一下思维方式
+
+**原型**：父类
+
+```javascript
+var user = {
+        name: 'sichenyong',
+        age: 21,
+        qq: 482722982,
+        sex: '男',
+        run: function () {
+            console.log(this.name + 'run');
+        }
+    } 
+
+    var xiaoming = {
+        name: '小明'
+    }
+    //小明的原型是user
+    xiaoming._proto_ = user;
+
+    var bird = {
+        fly: function () {
+            console.log(this.name + 'fly');
+        }
+    }
+    //小明的原型是bird
+    xiaoming._proto_ = bird;
+```
+
+
+
+> class继承
+
+class是在es6引入的
+
+es6之前
+
+```javascript
+function student(name) {
+        this.name = name;
+    }
+
+    //给student新增一个方法 不建议使用
+
+    student.prototype.hello = function () {
+        alert('hello');
+    }
+```
+
+es6之后
+
+定义一个类，属性，方法
+
+```javascript
+class student{
+      constructor(name) {
+          this.name = name;
+      }
+
+      hello() {
+          alert('hello');
+      }
+}
+```
+
+> 继承
+
+```javascript
+class xiaoStudent extends Student {
+        constructor(name,grade) {
+            super(name);
+            this.grade = grade;
+        }
+
+        xiao() {
+            alert('我是一个小学生');
+        }
+    }
+var xiaoxuesheng = new xiaoStudent('xiaohuang',90);
+```
+
+实际上还是原型，但是对我们java人很友好
+
+![image-20220114113521014](E:\FulllStack\JavaScript\FullStack\note-images\2.png)
+
+
+
+> 原型链
+
+```javascript
+_proto_
+```
+
