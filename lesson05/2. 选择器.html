@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--本地引入-->
+    <script src="lib/jquery-3.6.0.min.js"></script>
+    <!--CDN引入-->
+    <!--<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>-->
+</head>
+<body>
+
+<script>
+
+    /*
+    原生的
+    标签选择器
+    document.getElementsByTagName('');
+    类选择器
+    document.getElementsByClassName('');
+    id选择器
+    document.getElementById('');
+    */
+
+    //jquery的选择器  css中的选择器都能用
+    $('p').click() //标签选择器 此时选中p标签
+    $('#id').click() //id选择器 此时选中id名为id的标签
+    $('.p2').click() // 类选择器 此时选中了类名为p2的标签
+
+</script>
+
+</body>
+</html>

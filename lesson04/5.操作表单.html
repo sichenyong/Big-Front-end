@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#" method="post">
+    <p>
+        <span>用户名:</span> <input type="text" placeholder="请输入用户名" required id="username"/>
+    </p>
+
+    <!--无论是单选框，还是多选框，获取的都是定义好的value值
+        对于单选框、多选框，应该用select获取选中的值
+    -->
+    <p>
+        <span>性别:</span>
+        <input type="radio" name="gender" value="1">男
+        <input type="radio" name="gender" value="0">女
+    </p>
+
+    <input type="submit" value="提交">
+</form>
+
+<script>
+    var username,gender;
+    username = document.getElementById('username'); //得到输入框的值
+    gender = document.getElementsByName('gender'); //得到单选框中的值
+    console.log(gender[0].value); //打印男生的value
+    username.value = '123'; //修改输入框中的值
+
+    console.log(gender[0].checked); //查看当前是否被选中
+
+</script>
+</body>
+</html>

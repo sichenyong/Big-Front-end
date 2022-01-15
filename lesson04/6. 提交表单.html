@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提交表单</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.js"></script>
+</head>
+<body>
+
+<!--
+    input 用name属性 才能在前端查看值
+    表单也可以绑定提交事件 onsubmit=" return aaa()
+    onsubmit接受最后结果 true的话跳转到action false的话不跳转
+-->
+<form action="#" method="post" onsubmit=" return aaa()">
+  <p>
+    <span>用户名:</span> <input type="text" placeholder="请输入用户名" required id="username" name="username"/>
+  </p>
+
+    <!--<p>
+        <span>密码:</span> <input type="password" placeholder="请输入密码" required id="password" name="password"/>
+    </p>-->
+
+    <p>
+        <span>密码:</span> <input type="password" placeholder="请输入密码" required id="input-password"/>
+    </p>
+
+    <input type="hidden" id="md5-password" name="password">
+
+    <!--在button上绑定事件 onclick-->
+    <!--<button type="submit" onclick="aaa()">提交</button>-->
+    <button type="submit">提交</button>
+</form>
+
+<script>
+    function aaa() {
+        var username,password, md5password;
+        username = document.getElementById('username').value;
+        password = document.getElementById('input-password').value;
+        md5password = document.getElementById('md5-password');
+
+        //在这里可以加密密码，别人在网页看不到你的真实密码
+        // MD5算法
+        md5password.value= md5(password);
+        console.log(md5password.value);
+        console.log(password);
+        alert(md5password.value);
+        return true;
+    }
+</script>
+</body>
+</html>

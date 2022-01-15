@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p id="js">JavaScript</p>
+<div id="list">
+  <p id="se">JavaSE</p>
+  <p id="ee">JavaEE</p>
+  <p id="me">JavaME</p>
+</div>
+
+<script>
+    var ee,js;
+    ee = document.getElementById('ee');
+    js = document.getElementById('js');
+    list = document.getElementById('list');
+    list.replaceChild(js,ee);
+
+</script>
+
+</body>
+</html>

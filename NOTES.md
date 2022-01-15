@@ -58,7 +58,7 @@ JavaScript是当下最流行的脚本语言
     - 逐步debug F12 source
     - application 保存web数据
 
-![image-20220112131411015](E:\FulllStack\JavaScript\FullStack\note-images\1.png)
+![image-20220112131411015](note-images/1.png)
 
 - elements 查看html css文件
 - console 控制台，调试js代码
@@ -867,6 +867,11 @@ console.log(PI);
 PI = 'aaa'; //这里会报错
 console.log(PI); //Uncaught TypeError: Assignment to constant variable.
 ```
+
+
+
+
+
 ## 4.3、方法
 
 > 定义方法
@@ -922,6 +927,26 @@ getAge.apply(person,[]); //this 指向person这个对象，参数为空
  21
 */
 ```
+
+
+
+
+
+## 4.4、箭头函数 闭包
+
+
+
+## 4.5、创建对象
+
+
+
+## 4.6、class继承
+
+
+
+## 4.7、原型链继承
+
+
 
 # 5、常用对象
 
@@ -1122,7 +1147,7 @@ var xiaoxuesheng = new xiaoStudent('xiaohuang',90);
 
 实际上还是原型，但是对我们java人很友好
 
-![image-20220114113521014](E:\FulllStack\JavaScript\FullStack\note-images\2.png)
+![image-20220114113521014](note-images/2.png)
 
 
 
@@ -1132,3 +1157,662 @@ var xiaoxuesheng = new xiaoStudent('xiaohuang',90);
 _proto_
 ```
 
+
+
+
+
+# 7、操作Dom对象(重点)
+
+Dom 文档对象模型
+
+> 核心
+
+浏览器网页就是个Dom树形结构
+
+- 更新Dom节点
+- 遍历Dom节点 得到Dom节点
+    - 通过id得到
+    - .....
+- 删除Dom节点
+- 添加一个新的Dom节点
+
+要操作Dom节点就必须要先获取Dom节点
+
+## 7.1、获取Dom节点
+
+> 获取Dom节点
+
+```javascript
+var father = document.getElementById('father');
+var h1 = document.getElementsByTagName('h1');
+var p1 = document.getElementById('p1');
+var p2 = document.getElementsByClassName('p2');
+
+var childrens = father.children; //获取父节点下的所有子节点
+// father.firstChild;
+// father.lastChild;
+```
+
+![image-20220114193526175](note-images/3.png)
+
+以上是原生代码，以后我们尽量使用jQuery
+
+## 7.2、更新Dom节点
+
+操作文本
+
+- box.innerText = '123';//修改文本内容
+- box.innerHTML = '<strong>456</strong>'; //插入一段超文本标签
+
+操作CSS
+
+- box.style.color = 'skyblue'; //添加css样式 属性用字符串，'-'用驼峰命名替换(font-size -->fontSize)
+
+```javascript
+<div id="box">
+
+</div>
+
+<script>
+   var box = document.getElementById('box');
+
+   box.innerText = '123';//修改文本内容
+   box.innerHTML = '<strong>456</strong>'; //插入一段超文本标签
+</script>
+```
+
+
+
+## 7.3、删除Dom节点
+
+步骤：先获取父节点，再通过父节点删除自己
+
+```html
+<div id="father">
+
+    <h1>标题一</h1>
+    <p id="p1">p1</p>
+    <p class="p2">p2</p>
+
+</div>
+<script>
+    var self = document.getElementById('p1');
+	var father = p1.parentElement;
+    father.removeChild(self);
+    
+    //删除是一个动态过程 所以下面代码会报错，再删除0之后，p1是第0个，p2是第1个，所以下面的father.removeChild(father.children[2]); 会报错
+    father.removeChild(father.children[0]);
+    father.removeChild(father.children[1]);
+    father.removeChild(father.children[2]);
+</script>
+
+father.removeChild(p1)
+```
+
+**注意：删除多个节点的时候，children是在时刻变化的，删除节点的时候一定要注意**
+
+## 7.4、插入Dom节点
+
+我们获得了某个Dom节点，假设这个Dom节点是**空的**，我们通过**innerHTML**就能增加一个元素，若这个Dom节点已经**存在**元素，则会**覆盖**掉
+
+**移动已有的标签**
+
+```html
+<p id="js">JavaScript</p>
+<div id="list">
+  <p id="se">JavaSE</p>
+  <p id="ee">JavaEE</p>
+  <p id="me">JavaME</p>
+</div>
+
+<script>
+    var js,list;
+    js = document.getElementById('js');
+    list = document.getElementById('list');
+</script>
+```
+
+```javascript
+list.appendChild(js);
+```
+
+![image-20220115155651895](note-images/4.png)
+
+
+
+追加成功
+
+
+
+**创建一个新的标签**
+
+```javascript
+<script>
+    var js,list,new_node,new_script, new_css, head;
+    js = document.getElementById('js');
+    list = document.getElementById('list');
+
+    //创建节点
+    new_node = document.createElement('p'); //创建一个P标签
+    new_node.id = 'new_node'; //给P标签赋一个ID值  等价于new_node.setAttribute('id','new_node');
+    new_node.innerText = 'Hello, JavaScript';
+    list.appendChild(new_node);
+
+    //创建一个script标签
+    new_script = document.createElement('script');
+    new_script.setAttribute('type','text/javascript');
+
+    //插入css样式
+    new_css = document.createElement('link');
+    new_css.setAttribute('href','css/style.css');
+    new_css.setAttribute('rel','stylesheet');
+    head = document.getElementsByTagName('head');
+    head[0].appendChild(new_css);
+
+</script>
+```
+
+在某个**标签前**插入一个元素
+
+```javascript
+<script>
+    var ee,js;
+    ee = document.getElementById('ee');
+    js = document.getElementById('js');
+    list = document.getElementById('list');
+    list.insertBefore(js,ee); //在list容器的ee前插入一个js节点
+
+</script>
+```
+
+
+
+**替换**某一个元素
+
+```javascript
+<script>
+    var ee,js;
+    ee = document.getElementById('ee');
+    js = document.getElementById('js');
+    list = document.getElementById('list');
+    list.replaceChild(js,ee); //用js替换list中的ee
+
+</script>
+```
+
+
+
+# 8、操作BOM对象
+
+BOM:浏览器对象模型
+
+> 浏览器介绍
+
+JavaScript的诞生就是为了在浏览器中运行！
+
+**内核：**
+
+- IE
+- Chrome
+- Safari
+- Firefox (Linux下默认的)
+- Opera
+
+**第三方**
+
+- QQ浏览器
+- 360浏览器
+- ......
+
+## 8.1、window
+
+> window
+
+window 代表浏览器窗口
+
+```javascript
+window.alert(1)
+
+window.innerHeight //当前显示的页面 可变
+722
+window.innerWidth
+1002
+window.outerHeight //绝对的 不管怎么变最后都一样
+824
+window.outerWidth
+1536
+```
+
+## 8.2、Navigator
+
+> Navigator（不建议使用）
+
+Navigator封装了浏览器信息
+
+```javascript
+navigator.appName 
+'Netscape'
+navigator.appVersion //版本
+'5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+navigator.userAgent //使用者
+'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
+navigator.platform //电脑版本
+'Win32'
+```
+
+大多数时候我们不会使用navigator，因为会被人为修改
+
+不建议使用这些属性来判断和编写代码
+
+## 8.3、screen
+
+> screen
+
+代表屏幕尺寸
+
+```javascript
+screen.height //屏幕宽度
+864
+screen.width //屏幕长度
+1536
+```
+
+## 8.4、location
+
+> localtion（重要）
+
+localtion 代表当前页面的URL信息
+
+```javascript
+host: "cn.bing.com" //主机
+href: "https://cn.bing.com/" //跳转链接
+protocol: "https:" //协议
+reload: ƒ reload() //刷新网页
+
+//设置新的地址
+location.assign('https://www.csdn.net/')
+```
+
+## 8.5、document
+
+> document (内容DOM)
+
+document 代表当前的页面， html dom文档树，可以获取网页的cookie
+
+```javascript
+document.title
+'必应'
+document.title = '刘庄'
+'刘庄'
+document.title
+'刘庄'
+```
+
+获取具体的文档树节点
+
+```html
+<dl id="app">
+    <dt>全栈学习</dt>
+    <dl>Java</dl>
+    <dl>JavaSE</dl>
+</dl>
+
+<script>
+   var dl = document.getElementById(app);
+</script>
+```
+
+可以获取网页cookie(客户端的本地信息)
+
+```javascript
+document.cookie
+'MUID=0CAF9CB89B9061622FBF8C669AD36001; SRCHD=AF=NOFORM; SRCHUID=V=2&GUID=21F15A1117E94CB38AF9A92F55D49AAE&dmnchg=1; ANON=A=94F653CD0B4696EDEEC32A6DFFFFFFFF&E=1a24&W=1; NAP=V=1.9&E=19ca&C=pVI-0iavLB-q_tfeAOHQ5GInwzLcbMI1CUGlsOq8-TXdXgG1nPJPkA&W=1; PPLState=1; HPHOL=0; _tarLang=default=zh-Hans; _TTSS_OUT=hist=WyJlbiIsInpoLUhhbnMiXQ==; _U=1xzJL1ag0pYejpVDhdsDvRYaKmD6AiaH3w9uWxhM99A2aI3yrg0eqmV4B_OUKeugqPBd7jG6dmIi1K6C3VLsU65r4FY_7gorCP2CMQ889lvwyfCS8udb9RhjKF5kpcJHj_Qxt-bD6vdb1hzWLKHC2uttn301Gwz_AXMYmOapSGCapvP0UQp5kmE4kzKl09RqVc1ktXZXV9RjVYl5lr7CyCg; ABDEF=V=13&ABDV=11&MRNB=1641730713228&MRB=0; HOOKBLOCKINDICATOR=TRUE; WLS=C=e040a726612862c7&N=%e7%a7%b0%e5%8b%87; _SS=SID=0ABDE9BB7F6C679D03B9F8977E426649; SRCHUSR=DOB=20211028&T=1642157551000&TPC=1642150315000&POEX=W; ipv6=hit=1642161151892&t=4; SRCHHPGUSR=SRCHLANG=zh-Hans&BRW=HTP&BRH=M&CW=1002&CH=722&SW=1536&SH=864&DPR=1.25&UTC=480&DM=0&HV=1642158316&BZA=0&WTS=63776776086; _HPVN=CS=eyJQbiI6eyJDbiI6NTcsIlN0IjoyLCJRcyI6MCwiUHJvZCI6IlAifSwiU2MiOnsiQ24iOjU3LCJTdCI6MCwiUXMiOjAsIlByb2QiOiJIIn0sIlF6Ijp7IkNuIjo1NywiU3QiOjEsIlFzIjowLCJQcm9kIjoiVCJ9LCJBcCI6dHJ1ZSwiTXV0ZSI6dHJ1ZSwiTGFkIjoiMjAyMi0wMS0xNFQwMDowMDowMFoiLCJJb3RkIjowLCJHd2IiOjAsIkRmdCI6bnVsbCwiTXZzIjowLCJGbHQiOjAsIkltcCI6MTA2Nn0='
+```
+
+劫持cookie
+
+www.taobao.com
+
+```html
+<script src = "aa.js"></script>
+<!--恶意人员：获取你的cookie上传到他的服务器-->
+```
+
+服务器端可以设置cookie：httpOnly
+
+## 8.6、history
+
+> history (不建议使用)
+
+代表浏览器的历史记录
+
+```javascript
+history.back() //后退一个网页
+history.forward() //前进一个网页
+```
+
+
+
+# 9、操作表单(验证)
+
+> 表单是什么？ form Dom树中的一个节点
+
+- 文本框  type = "text"
+- 下拉框 <select>
+- 单选框 <radio>
+- 多选框 <checkbox>
+- 隐藏域  type = "hidden"
+- 密码框 type = "password"
+- ......
+
+表单的目的：提交信息
+
+```html
+<body>
+
+<form action="#" method="post">
+    <p>
+        <span>用户名:</span> <input type="text" placeholder="请输入用户名" required id="username"/>
+    </p>
+
+    <!--无论是单选框，还是多选框，获取的都是定义好的value值
+        对于单选框、多选框，应该用select获取选中的值
+    -->
+    <p>
+        <span>性别:</span>
+        <input type="radio" name="gender" value="1">男
+        <input type="radio" name="gender" value="0">女
+    </p>
+
+</form>
+
+<script>
+    var username,gender;
+    username = document.getElementById('username'); //得到输入框的值
+    gender = document.getElementsByName('gender'); //得到单选框中的值
+    console.log(gender[0].value); //打印男生的value
+    username.value = '123'; //修改输入框中的值
+
+    console.log(gender[0].checked); //查看当前是否被选中
+
+</script>
+</body>
+```
+
+> 提交表单 md5加密，表单优化
+
+**md5工具类** 可以在 [猫云](https://www.bootcdn.cn/)上找最新版本
+
+```html
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.js"></script>
+```
+
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+</head>
+<body>
+
+<!--
+    input 用name属性 才能在前端查看值
+    表单也可以绑定提交事件 onsubmit=" return aaa()
+    onsubmit接受最后结果 true的话跳转到action false的话不跳转
+-->
+<form action="#" method="post" onsubmit="return aaa()">
+  <p>
+    <span>用户名:</span> <input type="text" placeholder="请输入用户名" required id="username" name="username"/>
+  </p>
+
+    <!--<p>
+        <span>密码:</span> <input type="password" placeholder="请输入密码" required id="password" name="password"/>
+    </p>-->
+
+    <p>
+        <span>密码:</span> <input type="password" placeholder="请输入密码" required id="input-password"/>
+    </p>
+
+    <input type="hidden" id="md5-password" name="password">
+
+    <!--在button上绑定事件 onclick-->
+    <!--<button type="submit" onclick="aaa()">提交</button>-->
+    <button type="submit">提交</button>
+</form>
+
+<script>
+    function aaa() {
+        alert(1);
+        var username,password, md5password;
+        username = document.getElementById('username').value;
+        password = document.getElementById('input-password').value;
+        md5password = document.getElementById('md5-password');
+
+
+        //在这里可以加密密码，别人在网页看不到你的真实密码
+        // MD5算法
+        //md5password.value= md5(password);
+        //console.log(md5password.value);
+        //password = md5password.value; 用于显示很长的········
+        console.log(password);
+
+        return true;
+    }
+</script>
+</body>
+</html>
+```
+
+
+
+# 10、jQuery
+
+> JavaScript和jQuery的关系
+
+- jQuery是一个库，里面存在大量的JavaScript函数
+
+## 10.1 jQuery引入
+
+> 获取jQuery
+
+- 第一种下载到本地，然后引入
+
+    1. [jQuery官网](https://jquery.com/)以及[jQuery中文api文档](https://jquery.cuishifeng.cn/)
+
+    2. 下载jQuery要下载已编译的，如jquery-xxx.min.js，右击-->链接另存为
+
+- 第二种从cdn引入
+
+    1. 打开[猫云](https://www.bootcdn.cn/)
+    2. 搜索jquery
+    3. 复制代码
+
+成果：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--本地引入-->
+    <script src="lib/jquery-3.6.0.min.js"></script>
+    <!--CDN引入-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+```
+
+## 10.2、jQuery公式
+
+> 公式
+
+- 公式： $(selector).action()
+    - selector代表的是选择器(css的选择器)
+    - action代表的是事件
+
+实例
+
+```html
+<body>
+
+<a href="" id="jquery-test">点我</a>
+
+
+<script>
+    $("#jquery-test").click(function () {
+        alert('hello')
+    })
+</script>
+
+</body>
+```
+
+
+
+## 10.3、jQuery选择器
+
+- [api中文文档](https://jquery.cuishifeng.cn/)
+
+```javascript
+<script>
+
+    /*
+    原生的
+    标签选择器
+    document.getElementsByTagName('');
+    类选择器
+    document.getElementsByClassName('');
+    id选择器
+    document.getElementById('');
+    */
+
+    //jquery的选择器  css中的选择器都能用
+    $('p').click() //标签选择器 此时选中p标签
+    $('#id').click() //id选择器 此时选中id名为id的标签
+    $('.p2').click() // 类选择器 此时选中了类名为p2的标签
+
+</script>
+```
+
+
+
+## 10.4、事件
+
+> 事件分类
+
+- 鼠标事件
+- 键盘事件
+- 其他事件
+
+
+
+> 鼠标事件
+
+```javasc
+<button id="test">点我试试</button>
+
+<script>
+    
+    $('#test').mousexxx
+    
+</script>
+```
+
+![image-20220115190033573](note-images/5.png)
+
+mouseover -- 鼠标离开
+
+实例：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/jquery-3.6.0.min.js"></script>
+
+    <style>
+        #divMove{
+            width: 500px;
+            height: 500px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+
+<!--获取鼠标的当前坐标-->
+
+mouse: <span id="mouseMove"></span>
+<div id="divMove">
+在这里移动鼠标试试
+</div>
+
+<script>
+    //当网页元素加载完毕之后，响应事件
+    /*js原生
+    $(document).ready(function () {
+
+    })
+    */
+
+    //jquery
+    $(function () {
+        $('#divMove').mousemove(function (e) {
+            $('#mouseMove').text('x:' + e.pageX + 'y: ' + e.pageY);
+        })
+    })
+</script>
+
+</body>
+</html>
+```
+
+## 10.5、操作Dom元素
+
+- 节点文本操作
+
+```javascript
+ $('#test-ul li[name = python]').text() //获得值
+'Python'
+ $('#test-ul li[name = python]').text(123) //设置值
+ $('#test-ul li[name = python]').text()
+'123'
+
+$('#test-ul').html() //获得值
+$('#test-ul').html(<strong>147</strong>) //设置值
+```
+
+- css
+
+```javascript
+$('#test-ul li[name = python]').css("color","red"); //单个属性
+$('#test-ul li[name = python]').css({ "color": "#ff0011", "background": "blue" }); //多个属性用{}
+```
+
+- 元素的显示和隐藏
+
+```javascript
+ $('#test-ul li[name = python]').hide(); //隐藏元素 本质和display:none相同
+ $('#test-ul li[name = python]').show(); //显示元素
+```
+
+- 娱乐
+
+```javascript
+$(window).width()
+963
+$(window).height()
+666
+```
+
+多看看[api中文文档](https://jquery.cuishifeng.cn/)
+
+- ajax
